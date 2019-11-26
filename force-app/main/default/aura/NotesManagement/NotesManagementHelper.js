@@ -57,4 +57,13 @@
         });
         toastEvent.fire();
     },
+    redirectToRecordEditPage: function(component, event, helper) {
+        var row = event.getParam('row');
+        var navEvt = $A.get("e.force:navigateToSObject");
+        navEvt.setParams({
+            "recordId": row.Id,
+            "slideDevName": "Detail"
+        });
+        navEvt.fire();  
+    }
 });

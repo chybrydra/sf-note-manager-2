@@ -7,7 +7,8 @@
         var action = event.getParam('action');
         switch (action.name) {
             case 'editRecord':
-                console.log('EDIT')
+                console.log('EDIT');                
+                helper.redirectToRecordEditPage(component, event, helper);              
                 break;
             case 'deleteRecord':
                 helper.deleteNote(component, event, helper);
