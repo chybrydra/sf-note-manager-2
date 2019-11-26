@@ -1,0 +1,81 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "My_Notes__c",
+                "referenceId": "My_Notes__cRef1"
+            },
+            "Title__c": "Note4",
+            "Description__c": "desc4",
+            "Active__c": false,
+            "Effective_Date__c": "2019-12-25T09:17:00.000+0000",
+            "Keywords__c": "key1,key7"
+        },
+        {
+            "attributes": {
+                "type": "My_Notes__c",
+                "referenceId": "My_Notes__cRef2"
+            },
+            "Title__c": "Note7",
+            "Description__c": "desc7",
+            "Active__c": true,
+            "Effective_Date__c": "2019-11-20T12:02:00.000+0000",
+            "Keywords__c": "key5, key13"
+        },
+        {
+            "attributes": {
+                "type": "My_Notes__c",
+                "referenceId": "My_Notes__cRef3"
+            },
+            "Title__c": "Note10",
+            "Description__c": "John Doe",
+            "Active__c": true,
+            "Effective_Date__c": "2020-01-14T12:13:00.000+0000",
+            "Keywords__c": "john, doe, 10"
+        },
+        {
+            "attributes": {
+                "type": "My_Notes__c",
+                "referenceId": "My_Notes__cRef4"
+            },
+            "Title__c": "Note13",
+            "Description__c": "13 friday unlucky day",
+            "Active__c": true,
+            "Effective_Date__c": "2020-03-13T11:14:00.000+0000",
+            "Keywords__c": "unlucky, 13,"
+        },
+        {
+            "attributes": {
+                "type": "My_Notes__c",
+                "referenceId": "My_Notes__cRef5"
+            },
+            "Title__c": "Note33",
+            "Description__c": "Desc33",
+            "Active__c": true,
+            "Effective_Date__c": "2019-11-13T12:13:00.000+0000",
+            "Keywords__c": "key7, key15"
+        },
+        {
+            "attributes": {
+                "type": "My_Notes__c",
+                "referenceId": "My_Notes__cRef6"
+            },
+            "Title__c": "Do stuff",
+            "Description__c": "Do something, dunno what but do it",
+            "Active__c": false,
+            "Effective_Date__c": "2019-12-18T12:15:00.000+0000",
+            "Keywords__c": "stuff, something, keineahnung"
+        },
+        {
+            "attributes": {
+                "type": "My_Notes__c",
+                "referenceId": "My_Notes__cRef7"
+            },
+            "Title__c": "Note1",
+            "Description__c": "Desc1",
+            "Active__c": true,
+            "Effective_Date__c": "2019-11-13T12:13:00.000+0000",
+            "Keywords__c": "key1, key7, key15"
+        }
+    ]
+}
