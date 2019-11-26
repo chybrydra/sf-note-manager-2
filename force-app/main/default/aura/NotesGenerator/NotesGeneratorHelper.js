@@ -17,10 +17,14 @@
             if (state === "SUCCESS") {
                 console.log('SUCCESS!!!!');
                 toastEvent.fire();
-                // var expenses = component.get("v.expenses");
-                // expenses.push(response.getReturnValue());
-                // component.set("v.expenses", expenses);
             }
+            var emptyNote ={ 'sobjectType': 'My_Notes__c',
+                            'Title__c': '',
+                            'Description__c': '',
+                            'Keywords__c': '',
+                            'Effective_Date__c': '',
+                            'Active__c': false }
+            component.set("v.newNote", emptyNote);
         });
         $A.enqueueAction(action);
     }
