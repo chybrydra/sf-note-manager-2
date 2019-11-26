@@ -6,7 +6,6 @@
         }, true);
         if(validNote){
             var newNote = component.get("v.newNote");
-            console.log("Create note: " + JSON.stringify(newNote));
             helper.createNote(component, newNote);
         }
     },

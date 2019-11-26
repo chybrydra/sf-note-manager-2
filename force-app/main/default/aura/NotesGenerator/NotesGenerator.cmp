@@ -7,46 +7,48 @@
                         'Keywords__c': '',
                         'Effective_Date__c': '',
                         'Active__c': false }"/>
-
-    <div aria-labelledby="newnoteform">
-        <fieldset class="slds-box slds-theme--default slds-container--small">
-        <legend id="newnoteform" class="slds-text-heading--small 
-          slds-p-vertical--medium">
-          Add Note
-        </legend>
-  
-        <form class="slds-form--stacked">          
-            <lightning:input aura:id="noteform" 
-                             label="Title"
-                             name="notetitle"
-                             value="{!v.newNote.Title__c}"
-                             required="true"/> 
-            <lightning:input aura:id="noteform"
-                             type="textarea"  
-                             label="Description"
-                             name="noteamount"
-                             value="{!v.newNote.Description__c}"
-                             required="true"/>
-            <lightning:input aura:id="noteform"
-                             label="Keywords"
-                             name="noteclient"
-                             value="{!v.newNote.Keywords__c}"
-                             required="true"/>
-            <lightning:input type="datetime" 
-                             aura:id="noteform" 
-                             label="Effective Date"
-                             name="notedate"
-                             value="{!v.newNote.Effective_Date__c}"/>
-            <lightning:input type="checkbox" 
-                             aura:id="noteform" 
-                             label="Active?"  
-                             name="noteactive"
-                             checked="{!v.newNote.Active__c}"/>
-            <lightning:button label="Create new note" 
-                              class="slds-m-top--medium"
-                              variant="brand"
-                              onclick="{!c.clickCreateNewNote}"/>
-        </form>
-      </fieldset>
-    </div>
+    <lightning:layout>
+        <lightning:layoutItem padding="around-small" size="6">
+            <div aria-labelledby="newnoteform">
+                <fieldset class="slds-box slds-theme--default slds-container--small">
+                    <legend id="newnoteform" class="slds-text-heading--small slds-p-vertical--medium">
+                        Add Note
+                    </legend>
+        
+                    <form class="slds-form--stacked">          
+                        <lightning:input aura:id="noteform" 
+                                        label="Title"
+                                        name="notetitle"
+                                        value="{!v.newNote.Title__c}"
+                                        required="true"/> 
+                        <lightning:textarea aura:id="noteform"
+                                        type="textarea"  
+                                        label="Description"
+                                        name="noteamount"
+                                        value="{!v.newNote.Description__c}"
+                                        required="true"/>
+                        <lightning:input aura:id="noteform"
+                                        label="Keywords"
+                                        name="noteclient"
+                                        value="{!v.newNote.Keywords__c}"
+                                        required="true"/>
+                        <lightning:input type="datetime" 
+                                        aura:id="noteform" 
+                                        label="Effective Date"
+                                        name="notedate"
+                                        value="{!v.newNote.Effective_Date__c}"/>
+                        <lightning:input type="checkbox" 
+                                        aura:id="noteform" 
+                                        label="Active?"  
+                                        name="noteactive"
+                                        checked="{!v.newNote.Active__c}"/>
+                        <lightning:button label="Create new note" 
+                                        class="slds-m-top--medium"
+                                        variant="brand"
+                                        onclick="{!c.clickCreateNewNote}"/>
+                    </form>
+                </fieldset>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
 </aura:component>	
