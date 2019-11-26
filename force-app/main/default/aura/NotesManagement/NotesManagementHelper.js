@@ -10,7 +10,7 @@
             },
             {label: 'Active?', fieldName: 'Active__c', type: 'boolean'},
             {type:  'button', typeAttributes: 
-                {iconName: 'utility:edit', name: 'editRecord', label: 'Edit', 
+                {iconName: 'utility:edit', name: 'editRecord', label: 'Edit',
                 title: 'Edit', disabled: false, value: 'test'}},
             {type:  'button', typeAttributes: 
                 {iconName: 'utility:delete', name: 'deleteRecord', label: 'Del.',  
