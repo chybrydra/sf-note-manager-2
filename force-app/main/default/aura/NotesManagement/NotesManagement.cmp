@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable">
+    <div>
+        FILTERS
+    </div>
+    <div>
+        LIST
+    </div>
+    <div>
+        PAGINATION
+    </div>
+</aura:component>	
