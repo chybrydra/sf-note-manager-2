@@ -5,11 +5,22 @@
     <aura:attribute name="pageNumber" type="integer" default="1"/>
      
     <aura:handler name="init" value="{!this}" action="{!c.initializeDatatable}"/>
-     
-    <lightning:datatable data="{! v.noteList }"
-                         columns="{! v.columns }"
-                         keyField="id"
-                         hideCheckboxColumn="true"
-                         onrowaction="{! c.handleRowAction }"
-                         aura:id="noteTable" />
+    
+    <lightning:layout class="slds-box slds-theme_default" multipleRows="true">
+        <lightning:layoutItem size="12">
+            <lightning:datatable data="{! v.noteList }"
+                                columns="{! v.columns }"
+                                keyField="id"
+                                hideCheckboxColumn="true"
+                                onrowaction="{! c.handleRowAction }"
+                                aura:id="noteTable" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12">
+            <lightning:button label="&lt;&lt;" title="first page" onclick="{! c.firstPage }"/>
+            <lightning:button label="&lt;" title="previous page" onclick="{! c.previousPage }"/>
+            <lightning:button label="{! 'current page: ' + v.pageNumber }" disabled="true"/>
+            <lightning:button label="&gt;" title="next page" onclick="{! c.nextPage }"/>
+            <lightning:button label="&gt;&gt;" title="last page" onclick="{! c.lastPage }"/>
+        </lightning:layoutItem>
+    </lightning:layout>
 </aura:component>	

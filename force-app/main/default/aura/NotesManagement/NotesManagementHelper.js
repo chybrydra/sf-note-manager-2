@@ -10,11 +10,11 @@
             },
             {label: 'Active?', fieldName: 'Active__c', type: 'boolean'},
             {type:  'button', typeAttributes: 
-                {iconName: 'utility:edit', label: 'Edit', name: 'editRecord', 
-                title: 'editTitle', disabled: false, value: 'test'}},
+                {iconName: 'utility:edit', name: 'editRecord', label: 'Edit', 
+                title: 'Edit', disabled: false, value: 'test'}},
             {type:  'button', typeAttributes: 
-                {iconName: 'utility:edit', label: 'Delete', name: 'deleteRecord', 
-                title: 'deleteTitle', disabled: false, value: 'test'}}
+                {iconName: 'utility:delete', name: 'deleteRecord', label: 'Del.',  
+                title: 'Delete', disabled: false, value: 'test'}}
         ]);
     },
     fetchNotes: function(component, event, helper) {

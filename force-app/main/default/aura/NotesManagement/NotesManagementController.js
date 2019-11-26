@@ -15,4 +15,16 @@
                 break;
         }
     },
+    previousPage: function(component, event, helper) {
+        console.log('prev page');
+    },
+    nextPage: function(component, event, helper) {
+        console.log('next page');
+    },
+    firstPage: function(component, event, helper) {
+        console.log('first page');
+    },
+    lastPage: function(component, event, helper) {
+        console.log('last page');
+    },    
 });
