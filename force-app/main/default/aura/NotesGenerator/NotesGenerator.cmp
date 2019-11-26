@@ -1,14 +1,16 @@
 <aura:component implements="force:appHostable" controller="MyNotesController">
+
+    <aura:attribute name="newNote" 
+                    type="My_Notes__c"
+                    default="{ 'sobjectType': 'My_Notes__c',
+                            'Title__c': '',
+                            'Description__c': '',
+                            'Keywords__c': '',
+                            'Effective_Date__c': '',
+                            'Active__c': false }"/>
     
-    <aura:attribute name="newNote" type="My_Notes__c"
-         default="{ 'sobjectType': 'My_Notes__c',
-                        'Title__c': '',
-                        'Description__c': '',
-                        'Keywords__c': '',
-                        'Effective_Date__c': '',
-                        'Active__c': false }"/>
-    <lightning:layout>
-        <lightning:layoutItem padding="around-small" size="6">
+    <lightning:layout class="slds-box slds-theme_default">
+        <lightning:layoutItem padding="around-small" size="12">
             <div aria-labelledby="newnoteform">
                 <fieldset class="slds-box slds-theme--default slds-container--small">
                     <legend id="newnoteform" class="slds-text-heading--small slds-p-vertical--medium">
@@ -51,4 +53,5 @@
             </div>
         </lightning:layoutItem>
     </lightning:layout>
+
 </aura:component>	
