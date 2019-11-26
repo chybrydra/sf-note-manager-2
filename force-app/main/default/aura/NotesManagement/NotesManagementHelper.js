@@ -1,5 +1,60 @@
 ({
-    helperMethod : function() {
-
-    }
-})
+    setDatatableMetadata: function(component, event, helper) {
+        component.set('v.columns', [
+            {label: 'Title', fieldName: 'Title__c', type: 'text'},
+            {label: 'Description', fieldName: 'Description__c', type: 'text'},
+            {label: 'Keywords', fieldName: 'Keywords__c', type: 'text'},
+            {label: 'Effective Date', fieldName: 'Effective_Date__c', type: 'date', typeAttributes: {  
+                    day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit',  
+                    minute: '2-digit', second: '2-digit', hour12: false}
+            },
+            {label: 'Active?', fieldName: 'Active__c', type: 'boolean'},
+            {type:  'button', typeAttributes: 
+                {iconName: 'utility:edit', label: 'Edit', name: 'editRecord', 
+                title: 'editTitle', disabled: false, value: 'test'}},
+            {type:  'button', typeAttributes: 
+                {iconName: 'utility:edit', label: 'Delete', name: 'deleteRecord', 
+                title: 'deleteTitle', disabled: false, value: 'test'}}
+        ]);
+    },
+    fetchNotes: function(component, event, helper) {
+        var action = component.get("c.getNotes");
+        action.setParams({
+            "pageNumber": component.get("v.pageNumber"),
+            "pageSize": component.get("v.pageSize")
+        });
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                component.set("v.noteList", response.getReturnValue());
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    deleteNote: function(component, event, helper) {
+        var row = event.getParam('row');
+        var noteTitle = row.Title__c;
+        var deleteAction = component.get("c.deleteNote");
+        deleteAction.setParams({
+            "noteId": row.Id
+        });
+        deleteAction.setCallback(this, function(response){
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                //update list...
+                var message = "Note deleted successfully: " + noteTitle;
+                helper.fireSuccessEvent(component, event, helper, message)
+            }
+        });
+        $A.enqueueAction(deleteAction);
+    },
+    fireSuccessEvent: function(component, event, helper, message) {
+        var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+            "title": "Success!",
+            "message": message,
+            "type": "success"
+        });
+        toastEvent.fire();
+    },
+});
