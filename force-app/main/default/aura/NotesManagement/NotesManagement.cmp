@@ -81,7 +81,8 @@
                                                         value="{! v.searchEndDate }"/>
                                         <lightning:input type="text"
                                                         label="search phrase"
-                                                        value="{! v.searchText }"/>
+                                                        value="{! v.searchText }"
+                                                        disabled="{! and(!v.searchInTitles, !v.searchInKeywords) }" />
                                         <lightning:button label="Search" 
                                                         class="slds-m-top--medium"
                                                         variant="brand"
