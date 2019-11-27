@@ -42,4 +42,12 @@
         component.set('v.pageNumber', lastPageNumber);
         helper.fetchNotes(component, event, helper);  
     },    
+    search: function(component, event, helper) {
+        console.log('search in titles: ' + component.get("v.searchInTitles"));
+        console.log('search in keywords: ' + component.get("v.searchInKeywords"));
+        console.log('search only active: ' + component.get("v.searchOnlyActive"));
+        console.log('search from: ' + component.get("v.searchStartDate"));
+        console.log('search to: ' + component.get("v.searchEndDate"));
+        console.log('search phrase: ' + component.get("v.searchText"));
+    }
 });

@@ -5,9 +5,52 @@
     <aura:attribute name="pageNumber" type="integer" default="1"/>
     <aura:attribute name="recordCount" type="integer" default="0"/>
     <aura:attribute name="lastPageNumber" type="integer" default="1"/>
+    <aura:attribute name="searchText" type="string" default=""/>
+    <aura:attribute name="searchInTitles" type="boolean" default="false"/>
+    <aura:attribute name="searchInKeywords" type="boolean" default="false"/>
+    <aura:attribute name="searchOnlyActive" type="boolean" default="false"/>
+    <aura:attribute name="searchStartDate" type="datetime"/>
+    <aura:attribute name="searchEndDate" type="datetime"/>
      
     <aura:handler name="init" value="{!this}" action="{!c.initializeDatatable}"/>
     
+    <lightning:layout class="slds-box slds-theme_default">
+        <lightning:layoutItem padding="around-small" size="12">
+            <div aria-labelledby="newnoteform">
+                <fieldset class="slds-box slds-theme--default slds-container--small">
+                    <legend id="newnoteform" class="slds-text-heading--small slds-p-vertical--medium">
+                        Search
+                    </legend>
+        
+                    <form class="slds-form--stacked">          
+                        <lightning:input type="checkbox" 
+                                        label="search in titles" 
+                                        checked="{! v.searchInTitles }"/>
+                        <lightning:input type="checkbox" 
+                                        label="search in keywords" 
+                                        checked="{! v.searchInKeywords }"/>
+                        <lightning:input type="checkbox" 
+                                        label="search for 'active' only" 
+                                        checked="{! v.searchOnlyActive }"/>
+                        <lightning:input type="datetime" 
+                                        label="search from date:" 
+                                        value="{! v.searchStartDate }"/>
+                        <lightning:input type="datetime" 
+                                        label="search from date:" 
+                                        value="{! v.searchEndDate }"/>
+                        <lightning:input type="text"
+                                        label="search phrase"
+                                        value="{! v.searchText }"/>
+                        <lightning:button label="Search" 
+                                        class="slds-m-top--medium"
+                                        variant="brand"
+                                        onclick="{!c.search}"/>
+                    </form>
+                </fieldset>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+
     <lightning:layout class="slds-box slds-theme_default" multipleRows="true">
         <lightning:layoutItem size="12">
             <lightning:datatable data="{! v.noteList }"
@@ -25,6 +68,6 @@
             <lightning:button label="&gt;&gt;" 
                                 title="{! 'last page (' + v.lastPageNumber + ')'}"
                                 onclick="{! c.lastPage }"/>
-        </lightning:layoutItem>
+        </lightning:layoutItem>                    
     </lightning:layout>
 </aura:component>	
