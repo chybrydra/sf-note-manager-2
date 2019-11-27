@@ -1,5 +1,9 @@
 ({
     setDatatableMetadata: function(component, event, helper) {
+        var actions = [
+            { label: 'Edit', name: 'editRecord'},
+            { label: 'Delete', name: 'deleteRecord'}
+        ];
         component.set('v.columns', [
             {label: 'Title', fieldName: 'linkName', type: 'url', typeAttributes: 
                 {label: { fieldName: 'Title__c' }, target: '_self'}},
@@ -9,12 +13,7 @@
                 day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit',  
                 minute: '2-digit', second: '2-digit', hour12: false}},
             {label: 'Active?', fieldName: 'Active__c', type: 'boolean'},
-            {type:  'button', typeAttributes: 
-                {iconName: 'utility:edit', name: 'editRecord', label: 'Edit',
-                title: 'Edit', disabled: false, value: 'test'}},
-            {type:  'button', typeAttributes: 
-                {iconName: 'utility:delete', name: 'deleteRecord', label: 'Del.',  
-                title: 'Delete', disabled: false, value: 'test'}}
+            { type: 'action', typeAttributes: { rowActions: actions } }
         ]);
 
     },
