@@ -1,13 +1,13 @@
 ({
     setDatatableMetadata: function(component, event, helper) {
         component.set('v.columns', [
-            {label: 'Title', fieldName: 'Title__c', type: 'text'},
+            {label: 'Title', fieldName: 'linkName', type: 'url', typeAttributes: 
+                {label: { fieldName: 'Title__c' }, target: '_self'}},
             {label: 'Description', fieldName: 'Description__c', type: 'text'},
             {label: 'Keywords', fieldName: 'Keywords__c', type: 'text'},
             {label: 'Effective Date', fieldName: 'Effective_Date__c', type: 'date', typeAttributes: {  
-                    day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit',  
-                    minute: '2-digit', second: '2-digit', hour12: false}
-            },
+                day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit',  
+                minute: '2-digit', second: '2-digit', hour12: false}},
             {label: 'Active?', fieldName: 'Active__c', type: 'boolean'},
             {type:  'button', typeAttributes: 
                 {iconName: 'utility:edit', name: 'editRecord', label: 'Edit',
@@ -16,6 +16,7 @@
                 {iconName: 'utility:delete', name: 'deleteRecord', label: 'Del.',  
                 title: 'Delete', disabled: false, value: 'test'}}
         ]);
+
     },
     fetchNotes: function(component, event, helper) {
         var action = component.get("c.getNotes");
@@ -26,6 +27,10 @@
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS") {
+                var records =response.getReturnValue();
+                records.forEach(function(record){
+                    record.linkName = '/'+record.Id;
+                });
                 component.set("v.noteList", response.getReturnValue());
             }
         });
