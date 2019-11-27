@@ -1,7 +1,7 @@
 <aura:component implements="force:appHostable" controller="NotesManagementController">
     <aura:attribute type="My_Notes__c[]" name="noteList"/>
     <aura:attribute name="columns" type="List"/>
-    <aura:attribute name="pageSize" type="integer" default="5"/>
+    <aura:attribute name="pageSize" type="integer" default="10"/>
     <aura:attribute name="pageNumber" type="integer" default="1"/>
     <aura:attribute name="recordCount" type="integer" default="0"/>
     <aura:attribute name="lastPageNumber" type="integer" default="1"/>
