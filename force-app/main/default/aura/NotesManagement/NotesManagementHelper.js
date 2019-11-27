@@ -132,4 +132,9 @@
         var andArr = arrayOfFilters.filter(x => x !== '' && x !== null && x !== undefined);
         return andArr.join(' AND ');
     },
+    switchPage: function(component, event, helper, newPageNumber) {
+        if (newPageNumber >0 && newPageNumber <= component.get("v.lastPageNumber") && newPageNumber !== component.get("v.pageNumber")) {
+            component.set('v.pageNumber', newPageNumber);
+        }
+    }
 });

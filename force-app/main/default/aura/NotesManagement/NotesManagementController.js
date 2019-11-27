@@ -49,6 +49,7 @@
     search: function(component, event, helper) {
         helper.updateSearchFiltersForQuery(component, event, helper);
         helper.countRecords(component, event, helper);
+        helper.switchPage(component, event, helper, 1);
         helper.fetchNotes(component, event, helper);
         console.log(component.get("v.searchFilters"));        
     }
