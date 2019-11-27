@@ -93,5 +93,15 @@
             ? Math.floor(recordCount/pageSize) 
             : Math.floor(recordCount/pageSize) + 1;
         component.set('v.lastPageNumber', amountOfPages);
+    },
+    prepareFieldLikeFilter: function(fieldName, searchTxt, filterActive) {
+        return filterActive ? fieldName + " LIKE '%" + searchTxt + "%'" : '';
+    },
+    prepareBooleanFieldFilter: function(fieldName, isTrue) {
+        return isTrue ? fieldName + "='true'" : '';
+    },
+    prepareDateFilter: function(fieldName, inequalityChar, dateValue) {
+        if (dateValue===null || dateValue==='' ||dateValue===undefined) return '';
+        return fieldName + inequalityChar + dateValue;
     }
 });

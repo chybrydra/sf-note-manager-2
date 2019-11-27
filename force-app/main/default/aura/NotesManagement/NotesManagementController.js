@@ -47,11 +47,30 @@
         }
     },    
     search: function(component, event, helper) {
-        console.log('search in titles: ' + component.get("v.searchInTitles"));
-        console.log('search in keywords: ' + component.get("v.searchInKeywords"));
-        console.log('search only active: ' + component.get("v.searchOnlyActive"));
-        console.log('search from: ' + component.get("v.searchStartDate"));
-        console.log('search to: ' + component.get("v.searchEndDate"));
-        console.log('search phrase: ' + component.get("v.searchText"));
+        var searchTxt = component.get("v.searchText")
+        var filterTitle = '';
+        var filterKeywords = '';
+        if (searchTxt !== '') {
+            filterTitle = helper.prepareFieldLikeFilter("Title__c", searchTxt, component.get("v.searchInTitles"));
+            filterKeywords = helper.prepareFieldLikeFilter("Keywords__c", searchTxt, component.get("v.searchInKeywords"));
+        }
+        var filterActive = helper.prepareBooleanFieldFilter('Active__c', component.get("v.searchOnlyActive"));
+        var filterStartDate = helper.prepareDateFilter("Effective_Date__c", ">", component.get("v.searchStartDate"));
+        var filterEndDate = helper.prepareDateFilter("Effective_Date__c", "<", component.get("v.searchEndDate"));
+        
+        // prepare OR string
+        var orArr = [filterTitle, filterKeywords].filter(x => x !== '');
+        var orString = orArr.join(' OR ');
+        if (orString !== '')
+        orString = '(' + orString + ')';
+
+        // prepare AND string
+        var andArr = [orString, filterActive, filterStartDate, filterEndDate]
+            .filter(x => x !== '' && x !== null && x !== undefined);
+        var andString = andArr.join(' AND ');
+        
+        //update searchFilters in component
+        component.set("v.searchFilters", andString);
+        console.log(component.get("v.searchFilters"));        
     }
 });

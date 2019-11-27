@@ -11,6 +11,7 @@
     <aura:attribute name="searchOnlyActive" type="boolean" default="false"/>
     <aura:attribute name="searchStartDate" type="datetime"/>
     <aura:attribute name="searchEndDate" type="datetime"/>
+    <aura:attribute name="searchFilters" type="string" default=""/>
      
     <aura:handler name="init" value="{!this}" action="{!c.initializeDatatable}"/>
     
