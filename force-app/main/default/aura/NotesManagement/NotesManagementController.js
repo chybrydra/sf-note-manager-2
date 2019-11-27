@@ -34,13 +34,17 @@
         }
     },
     firstPage: function(component, event, helper) {
-        component.set('v.pageNumber', 1);
-        helper.fetchNotes(component, event, helper);  
+        if (component.get('v.pageNumber') != 1) {
+            component.set('v.pageNumber', 1);
+            helper.fetchNotes(component, event, helper);  
+        }
     },
     lastPage: function(component, event, helper) {
         var lastPageNumber = component.get('v.lastPageNumber');
-        component.set('v.pageNumber', lastPageNumber);
-        helper.fetchNotes(component, event, helper);  
+        if (component.get('v.pageNumber') != lastPageNumber) {
+            component.set('v.pageNumber', lastPageNumber);
+            helper.fetchNotes(component, event, helper);  
+        }
     },    
     search: function(component, event, helper) {
         console.log('search in titles: ' + component.get("v.searchInTitles"));
