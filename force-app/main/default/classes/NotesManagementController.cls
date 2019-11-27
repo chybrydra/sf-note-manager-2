@@ -25,4 +25,12 @@ public with sharing class NotesManagementController {
             System.debug(e.getMessage());
         }
     }
+
+    @AuraEnabled
+    public static Integer countNotes(){
+        Integer count = Database.countQuery(
+            'SELECT COUNT() FROM My_Notes__c '
+        );
+        return count;
+    }
 }

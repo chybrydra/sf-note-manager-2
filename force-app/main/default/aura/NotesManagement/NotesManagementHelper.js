@@ -47,6 +47,7 @@
             if (state === "SUCCESS") {
                 var message = "Note deleted successfully: " + noteTitle;
                 helper.fireSuccessEvent(component, event, helper, message);
+                helper.countRecords(component, event, helper);
                 helper.fetchNotes(component, event, helper);
             }
         });
@@ -69,5 +70,28 @@
             "slideDevName": "Detail"
         });
         navEvt.fire();  
+    },
+    countRecords: function(component, event, helper) {
+        var countAction = component.get("c.countNotes");
+        countAction.setParams({
+            // "sth": sth
+        });
+        countAction.setCallback(this, function(response){
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                component.set("v.recordCount", response.getReturnValue());
+                helper.calculatePageNumber(component, event, helper);
+            }
+        });
+        $A.enqueueAction(countAction);
+    },
+    calculatePageNumber: function(component, event, helper) {
+        var recordCount = component.get('v.recordCount');
+        var pageSize = component.get('v.pageSize');
+        var amountOfPages = 
+            recordCount%pageSize==0 
+            ? Math.floor(recordCount/pageSize) 
+            : Math.floor(recordCount/pageSize) + 1;
+        component.set('v.lastPageNumber', amountOfPages);
     }
 });

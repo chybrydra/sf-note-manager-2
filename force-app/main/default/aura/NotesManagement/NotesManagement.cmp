@@ -3,6 +3,8 @@
     <aura:attribute name="columns" type="List"/>
     <aura:attribute name="pageSize" type="integer" default="5"/>
     <aura:attribute name="pageNumber" type="integer" default="1"/>
+    <aura:attribute name="recordCount" type="integer" default="0"/>
+    <aura:attribute name="lastPageNumber" type="integer" default="1"/>
      
     <aura:handler name="init" value="{!this}" action="{!c.initializeDatatable}"/>
     
@@ -20,7 +22,9 @@
             <lightning:button label="&lt;" title="previous page" onclick="{! c.previousPage }"/>
             <lightning:button label="{! 'current page: ' + v.pageNumber }" disabled="true"/>
             <lightning:button label="&gt;" title="next page" onclick="{! c.nextPage }"/>
-            <lightning:button label="&gt;&gt;" title="last page" onclick="{! c.lastPage }"/>
+            <lightning:button label="&gt;&gt;" 
+                                title="{! 'last page (' + v.lastPageNumber + ')'}"
+                                onclick="{! c.lastPage }"/>
         </lightning:layoutItem>
     </lightning:layout>
 </aura:component>	

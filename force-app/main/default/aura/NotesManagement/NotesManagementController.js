@@ -1,6 +1,7 @@
 ({
     initializeDatatable: function(component, event, helper) {
         helper.setDatatableMetadata(component, event, helper);
+        helper.countRecords(component, event, helper);
         helper.fetchNotes(component, event, helper);
     },
     handleRowAction: function(component, event, helper) {
@@ -16,15 +17,29 @@
         }
     },
     previousPage: function(component, event, helper) {
-        console.log('prev page');
+        var pageNumber = component.get("v.pageNumber");
+        if (pageNumber>1) {
+            pageNumber--;
+            component.set('v.pageNumber', pageNumber);
+            helper.fetchNotes(component, event, helper);     
+        }
     },
     nextPage: function(component, event, helper) {
-        console.log('next page');
+        var pageNumber = component.get("v.pageNumber");
+        var lastPageNumber = component.get("v.lastPageNumber");
+        if (pageNumber<lastPageNumber) {
+            pageNumber++;
+            component.set('v.pageNumber', pageNumber);
+            helper.fetchNotes(component, event, helper);
+        }
     },
     firstPage: function(component, event, helper) {
-        console.log('first page');
+        component.set('v.pageNumber', 1);
+        helper.fetchNotes(component, event, helper);  
     },
     lastPage: function(component, event, helper) {
-        console.log('last page');
+        var lastPageNumber = component.get('v.lastPageNumber');
+        component.set('v.pageNumber', lastPageNumber);
+        helper.fetchNotes(component, event, helper);  
     },    
 });
