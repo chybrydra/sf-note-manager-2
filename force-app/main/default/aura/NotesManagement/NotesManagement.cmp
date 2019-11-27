@@ -15,7 +15,9 @@
     <aura:handler name="init" value="{!this}" action="{!c.initializeDatatable}"/>
     
     <div class="c-container">
+        
         <lightning:layout multipleRows="true" class="slds-box slds-theme_default">            
+            <!-- PAGINATION -->
             <lightning:layoutItem padding="around-small" size="12">
                 <div class="page-section page-header">
                     <lightning:button   label="&lt;&lt;" 
@@ -34,10 +36,12 @@
                                         onclick="{! c.lastPage }"/>
                 </div>
             </lightning:layoutItem>
-        
+            
+            <!-- TABLE + SEARCH -->
             <lightning:layoutItem padding="around-small" size="12">
-                <lightning:layout>
-                    <lightning:layoutItem padding="around-small" size="9">
+                <lightning:layout multipleRows="true" >
+                    <!-- TABLE -->
+                    <lightning:layoutItem padding="around-small" size="12" largeDeviceSize="9" mediumDeviceSize="12">
                         <div class="page-section page-main">
                             <lightning:datatable    data="{! v.noteList }"
                                                     columns="{! v.columns }"
@@ -47,8 +51,8 @@
                                                     aura:id="noteTable" />
                         </div>
                     </lightning:layoutItem>
-                    
-                    <lightning:layoutItem padding="around-small" size="3">
+                    <!-- SEARCH -->
+                    <lightning:layoutItem padding="around-small" size="12" largeDeviceSize="3" mediumDeviceSize="12">
                         <div class="page-section page-right">
                             <div aria-labelledby="newnoteform">
                                 <fieldset class="slds-box slds-theme--default slds-container--small">
