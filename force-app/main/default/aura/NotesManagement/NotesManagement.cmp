@@ -19,7 +19,7 @@
         
         <lightning:layout multipleRows="true" class="slds-box slds-theme_default">            
             <!-- PAGINATION -->
-            <lightning:layoutItem padding="around-small" size="12">
+            <lightning:layoutItem padding="around-small" class="slds-align_absolute-center" size="12">
                 <div class="page-section page-header">
                     <lightning:button   label="&lt;&lt;" 
                                         title="first page" 
