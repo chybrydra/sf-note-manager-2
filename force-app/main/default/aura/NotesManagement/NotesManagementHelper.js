@@ -45,9 +45,9 @@
         deleteAction.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS") {
-                //update list...
                 var message = "Note deleted successfully: " + noteTitle;
-                helper.fireSuccessEvent(component, event, helper, message)
+                helper.fireSuccessEvent(component, event, helper, message);
+                helper.fetchNotes(component, event, helper);
             }
         });
         $A.enqueueAction(deleteAction);
