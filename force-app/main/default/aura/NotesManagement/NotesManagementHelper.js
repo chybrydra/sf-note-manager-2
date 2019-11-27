@@ -94,6 +94,23 @@
             : Math.floor(recordCount/pageSize) + 1;
         component.set('v.lastPageNumber', amountOfPages);
     },
+    updateSearchFiltersForQuery: function(component, event, helper) {
+        var searchTxt = component.get("v.searchText")
+        var filterTitle = '';
+        var filterKeywords = '';
+        if (searchTxt !== '') {
+            filterTitle = helper.prepareFieldLikeFilter("Title__c", searchTxt, component.get("v.searchInTitles"));
+            filterKeywords = helper.prepareFieldLikeFilter("Keywords__c", searchTxt, component.get("v.searchInKeywords"));
+        }
+        var filterActive = helper.prepareBooleanFieldFilter('Active__c', component.get("v.searchOnlyActive"));
+        var filterStartDate = helper.prepareDateFilter("Effective_Date__c", ">", component.get("v.searchStartDate"));
+        var filterEndDate = helper.prepareDateFilter("Effective_Date__c", "<", component.get("v.searchEndDate"));
+        
+        var orString = helper.prepareOrString([filterTitle, filterKeywords]);
+        var andString = helper.prepareAndString([orString, filterActive, filterStartDate, filterEndDate]);
+
+        component.set("v.searchFilters", andString);
+    },
     prepareFieldLikeFilter: function(fieldName, searchTxt, filterActive) {
         return filterActive ? fieldName + " LIKE '%" + searchTxt + "%'" : '';
     },
@@ -103,5 +120,15 @@
     prepareDateFilter: function(fieldName, inequalityChar, dateValue) {
         if (dateValue===null || dateValue==='' ||dateValue===undefined) return '';
         return fieldName + inequalityChar + dateValue;
-    }
+    }, 
+    prepareOrString: function(arrayOfFilters) {
+        var orArr = arrayOfFilters.filter(x => x !== '');
+        var orString = orArr.join(' OR ');
+        if (orString !== '') orString = '(' + orString + ')';
+        return orString;
+    },
+    prepareAndString: function(arrayOfFilters) {
+        var andArr = arrayOfFilters.filter(x => x !== '' && x !== null && x !== undefined);
+        return andArr.join(' AND ');
+    },
 });

@@ -47,30 +47,7 @@
         }
     },    
     search: function(component, event, helper) {
-        var searchTxt = component.get("v.searchText")
-        var filterTitle = '';
-        var filterKeywords = '';
-        if (searchTxt !== '') {
-            filterTitle = helper.prepareFieldLikeFilter("Title__c", searchTxt, component.get("v.searchInTitles"));
-            filterKeywords = helper.prepareFieldLikeFilter("Keywords__c", searchTxt, component.get("v.searchInKeywords"));
-        }
-        var filterActive = helper.prepareBooleanFieldFilter('Active__c', component.get("v.searchOnlyActive"));
-        var filterStartDate = helper.prepareDateFilter("Effective_Date__c", ">", component.get("v.searchStartDate"));
-        var filterEndDate = helper.prepareDateFilter("Effective_Date__c", "<", component.get("v.searchEndDate"));
-        
-        // prepare OR string
-        var orArr = [filterTitle, filterKeywords].filter(x => x !== '');
-        var orString = orArr.join(' OR ');
-        if (orString !== '')
-        orString = '(' + orString + ')';
-
-        // prepare AND string
-        var andArr = [orString, filterActive, filterStartDate, filterEndDate]
-            .filter(x => x !== '' && x !== null && x !== undefined);
-        var andString = andArr.join(' AND ');
-        
-        //update searchFilters in component
-        component.set("v.searchFilters", andString);
+        helper.updateSearchFiltersForQuery(component, event, helper);
         console.log(component.get("v.searchFilters"));        
     }
 });
