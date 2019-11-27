@@ -27,7 +27,7 @@
                     <lightning:button   label="&lt;" 
                                         title="previous page" 
                                         onclick="{! c.previousPage }"/>
-                    <lightning:button   label="{! 'current page: ' + v.pageNumber }" 
+                    <lightning:button   label="{! 'current page: ' + v.pageNumber + '/' + v.lastPageNumber }" 
                                         disabled="true"/>
                     <lightning:button   label="&gt;" 
                                         title="next page" 
@@ -35,6 +35,8 @@
                     <lightning:button   label="&gt;&gt;" 
                                         title="{! 'last page (' + v.lastPageNumber + ')'}"
                                         onclick="{! c.lastPage }"/>
+                    <lightning:button   label="{! 'records found: ' + v.recordCount }" 
+                                        disabled="true"/>
                 </div>
             </lightning:layoutItem>
             

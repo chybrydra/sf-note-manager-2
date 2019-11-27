@@ -21,7 +21,8 @@
         var action = component.get("c.getNotes");
         action.setParams({
             "pageNumber": component.get("v.pageNumber"),
-            "pageSize": component.get("v.pageSize")
+            "pageSize": component.get("v.pageSize"),
+            "filters": component.get("v.searchFilters")
         });
         action.setCallback(this, function(response){
             var state = response.getState();
@@ -74,7 +75,7 @@
     countRecords: function(component, event, helper) {
         var countAction = component.get("c.countNotes");
         countAction.setParams({
-            // "sth": sth
+            "filters": component.get("v.searchFilters")
         });
         countAction.setCallback(this, function(response){
             var state = response.getState();
@@ -115,7 +116,7 @@
         return filterActive ? fieldName + " LIKE '%" + searchTxt + "%'" : '';
     },
     prepareBooleanFieldFilter: function(fieldName, isTrue) {
-        return isTrue ? fieldName + "='true'" : '';
+        return isTrue ? fieldName + "=TRUE" : '';
     },
     prepareDateFilter: function(fieldName, inequalityChar, dateValue) {
         if (dateValue===null || dateValue==='' ||dateValue===undefined) return '';

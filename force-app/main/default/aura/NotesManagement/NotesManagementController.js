@@ -45,9 +45,11 @@
             component.set('v.pageNumber', lastPageNumber);
             helper.fetchNotes(component, event, helper);  
         }
-    },    
+    }, 
     search: function(component, event, helper) {
         helper.updateSearchFiltersForQuery(component, event, helper);
+        helper.countRecords(component, event, helper);
+        helper.fetchNotes(component, event, helper);
         console.log(component.get("v.searchFilters"));        
     }
 });
